@@ -1,38 +1,190 @@
-.App {
+.Header {
+
+
+  width: 100%;
+  height: 10vh;
+  font-size: 50px;
+  font-weight: bold;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: rgb(219, 144, 6);
   color: white;
+  padding-top: 2vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
-.App-link {
-  color: #61dafb;
+.main-pokedex {
+
+  padding: 2%;
+  color: black;
+  padding-top: 10%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search-pokedex {
+
+  font-size: large;
+  width: 70%;
+  height: 5vh;
+  border-radius: 5px;
+  padding-left: 30px;
+  border: 1px solid gainsboro;
+
+}
+
+.div-search-pokedex {
+  display: flex;
+}
+
+.btn-search-pokedex {
+  margin-left: 3%;
+  width: 25%;
+  border-radius: 5px;
+  background-color: rgb(228, 158, 52);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: large;
+}
+
+.btn-search-pokedex-cancel {
+  background-color: rgb(132, 127, 127);
+}
+
+.Pokemon-pokemon {
+  margin-top: 10vh;
+  margin-left: 1vw;
+  margin-right: 1vw;
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  padding: 1%;
+  display: flex;
+}
+
+
+.photo-pokemon {
+  background-color: rgb(218, 217, 217);
+  width: 350px;
+  height: 350px;
+  border-radius: 5px;
+  ;
+}
+
+.infoPokemon {
+  padding: 3%;
+  display: block;
+  font-size: xx-large;
+}
+
+.tittle-pokemon {
+  color: rgb(219, 144, 6);
+}
+
+.info-pokemon {
+  color: rgb(100, 99, 99);
+  font-weight: bold;
+}
+
+.view-addPokemon {
+  font-size: large;
+  color:rgb(219, 144, 6);
+
+  border: none;
+  position: absolute;
+  top: 3vh;
+  left: 5vw;
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border-radius: 5px;
+  border: none;
+  /* border-top: 1px solid rgb(129, 129, 129); */
+  /* border-bottom: 1px solid rgb(219, 144, 6); */
+}
+
+
+/* AddPokemon */
+
+
+
+.main-addPokemon {
+  background-color: rgba(42, 38, 38, 0.892);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 999999;
+
+}
+
+.main-addPokemon-view {
+  display: flex;
+}
+
+
+.btnCancel-pokemon {
+  color: red;
+  position: absolute;
+  top: 21vh;
+  left: 63vw;
+  font-size: 3vh;
+}
+
+.form-main-addPokemon {
+  position: absolute;
+  border-radius: 5px;
+  top: 20vh;
+  left: 35vw;
+  width: 30vw;
+  height: 50vh;
+  background-color: white;
+
+}
+
+.main-form-pokemon {
+  padding: 10%;
+  display: list-item;
+}
+
+.title-addPokemon {
+  color: rgb(219, 144, 6);
+  font-size: large;
+  font-weight: bold;
+
+}
+
+.input-addPokemon {
+  border: 1px solid gainsboro;
+  border-radius: 5px;
+  width: 100%;
+  font-size: larger;
+  color: gray;
+  padding: 2%;
+  margin-top: 1vh;
+}
+
+
+.btn-AddPokemon {
+  border: none;
+  background-color: rgb(219, 144, 6);
+  padding: 3%;
+  width: 104%;
+  color: white;
+  font-size: large;
+  border-radius: 5px;
+  margin-top: 2vh;
+}
+
+.div-noRecords{
+
+font-size: xxx-large;
+font-weight: bold;
+width: 100%;
+height: 100%;
+color: rgb(219, 144, 6);
+/* text-align: center; */
+padding-top: 20vh;
+
 }
