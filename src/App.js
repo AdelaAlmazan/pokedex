@@ -22,14 +22,17 @@ const App = () => {
   const [searchPokemon, setSearchPokemon] = useState();
   const [nameBtn, setNameBtn] = useState(false);
   const [viewAdd, setViewAdd] = useState(false);
-  const [long, setLong] =useState(true);
+  const [long, setLong] = useState(true);
   const getPokemon = async () => {
+    setNameBtn(true);
     await axios
       .get(Url)
       .then((response) => {
-        setDataA(response.data.results);
-        console.log(response.data.results)
-
+        let nueva = (response.data.results).filter(name => (name['name'].toLowerCase().includes(searchPokemon.toLowerCase())) ||
+          (name['name'].includes(searchPokemon.toLocaleUpperCase())))
+        setDataA(nueva)
+        console.log(dataA)
+        longL(nueva);
       })
       .catch((error) => {
         console.log(error);
@@ -41,42 +44,20 @@ const App = () => {
       });
   };
 
-  const longL = (n) =>{
-
-  if(n.length == 0){
-    setLong(false);
-
-  } else{
-    long(true);
+  const longL = (n) => {
+    if (n.length == 0) {
+      setLong(false);
+    } else {
+      long(true);
+    }
   }
- 
-  
-  }
-
-  useEffect(() => {
-    getPokemon();
-    
-  }, []);
-
-
   const resetBtn = () => {
-    getPokemon();
     setNameBtn(false)
     setLong(true);
+    setDataA([]);
   }
 
 
-  const BuscarPokemon = () => {
-    setNameBtn(true);
-    console.log("nombre a buscar" + searchPokemon)
-    let nueva = dataA.filter(name => (name['name'].toLowerCase().includes(searchPokemon.toLowerCase())) ||
-      (name['name'].includes(searchPokemon.toLocaleUpperCase())))
-    console.log(searchPokemon.toLocaleLowerCase())
-    setDataA(nueva)
-  
-    longL(nueva);
-
-  }
   const handleName = (e) => {
 
     setSearchPokemon(e.target.value)
@@ -95,11 +76,11 @@ const App = () => {
     <div className="App">
       <div className="Header">
         POKEDEX
-
+        {/* 
         <button className='view-addPokemon'
           onClick={addPokemon}
 
-        >Agregar</button>
+        >Agregar</button> */}
       </div>
 
 
@@ -111,14 +92,14 @@ const App = () => {
             placeholder='Pokemon'
             className="search-pokedex"
             disabled={nameBtn}
-            
-            >
+
+          >
           </input>
           <button
-            onClick={nameBtn ? resetBtn : BuscarPokemon}
+            onClick={nameBtn ? resetBtn : getPokemon}
             className=
             {`btn-search-pokedex ${nameBtn && "btn-search-pokedex-cancel"}`}>
-            {nameBtn ? 'Cancelar' : 'Buscar'}
+            {nameBtn ? 'Volver a intentarlo' : 'Buscar'}
           </button>
         </div>
 
@@ -135,7 +116,7 @@ const App = () => {
               </div>
             )) :
             <div
-            className='div-noRecords'
+              className='div-noRecords'
             >No hay registros</div>
         }
 
