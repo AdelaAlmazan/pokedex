@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import InfoPokemon from './infoPokemon';
-import AddPokemon from './AddPokemon';
-import { Divider, notification } from "antd";
+import { notification } from "antd";
+import { AiOutlineReload } from "react-icons/ai";
 import "antd/dist/antd.css";
 const openNotificationWithIcon = (type, text, message) => {
   notification[type]({
@@ -20,15 +19,12 @@ const App = () => {
   const Url = "https://pokeapi.co/api/v2/pokemon/";
   let [dataA, setDataA] = useState([]);
   const [searchPokemon, setSearchPokemon] = useState();
-  const [nameBtn, setNameBtn] = useState(false);
-  const [viewAdd, setViewAdd] = useState(false);
   const [long, setLong] = useState(true);
   const getPokemon = async () => {
+    setLong(true);
     if (searchPokemon == "") {
-      setLong(false);
-      setNameBtn(true);
+      setLong(true);
     } else {
-      setNameBtn(true);
       await axios
         .get(Url)
         .then((response) => {
@@ -50,6 +46,7 @@ const App = () => {
 
   };
 
+
   const longL = (n) => {
     if (n.length == 0) {
       setLong(false);
@@ -57,48 +54,39 @@ const App = () => {
       long(true);
     }
   }
-  const resetBtn = () => {
-    setNameBtn(false)
-    setLong(true);
-    setDataA([]);
-  }
-
-
   const handleName = (e) => {
     setSearchPokemon(e.target.value)
     console.log(searchPokemon)
   }
 
-  const addPokemon = () => {
-    setViewAdd(true);
-  }
-  const ClosePokemon = () => {
-    setViewAdd(false)
-  }
+  useEffect(() => {
+    getPokemon();
+  }, []);
 
+
+  const Limpiar = () => {
+    setLong(true);
+    setSearchPokemon("")
+  }
   return (
     <div className="App">
       <div className="Header">
-        POKEDEX
-        {/* 
-        <button className='view-addPokemon'
-          onClick={addPokemon}
-
-        >Agregar</button> */}
+        {/* POKEDEX */}
       </div>
       <div className='main-pokedex'>
         <div className='div-search-pokedex'>
           <input
             onChange={handleName}
-            placeholder='Pokemon'
+            value={searchPokemon}
+            placeholder='search pokemon by name'
             className="search-pokedex"
-            disabled={nameBtn}>
+          >
           </input>
           <button
-            onClick={nameBtn ? resetBtn : getPokemon}
+            onClick={getPokemon}
             className=
-            {`btn-search-pokedex ${nameBtn && "btn-search-pokedex-cancel"}`}>
-            {nameBtn ? 'Volver a intentarlo' : 'Buscar'}
+            'btn-search-pokedex'>
+            {'Buscar'}
           </button>
         </div>
         {
@@ -111,9 +99,16 @@ const App = () => {
                 />
               </div>
             )) :
-            <div
-              className='div-noRecords'
-            >No hay registros</div>
+            <div className='div-noRecords'>no records
+              <br />
+              <button
+                onClick={Limpiar}
+                className='btnAgain-pokedex'>
+                Try again
+                <AiOutlineReload />
+              </button>
+
+            </div>
         }
       </div>
     </div>

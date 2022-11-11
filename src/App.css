@@ -33,6 +33,13 @@
 
 }
 
+.btnAgain-pokedex{
+border: none;
+color: gainsboro;
+border-radius: 5px;
+font-size: x-large;
+}
+
 .div-search-pokedex {
   display: flex;
 }
