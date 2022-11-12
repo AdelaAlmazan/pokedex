@@ -15,7 +15,7 @@ const InfoPokemon = (props) => {
                 setDataA(response.data.abilities[0].ability);
                 setDataB(response.data.sprites);
                 setDataC(response.data);
-                console.log(response.data.sprites)
+                // console.log(response.data.sprites)
             })
             .catch((error) => {
                 console.log(error);
